@@ -1,0 +1,18 @@
+{
+  "name": "sortable-list",
+  "version": "0.0.0",
+  "keywords": [
+    "seed",
+    "polymer",
+    "web-components",
+    "sortable"
+  ],
+  "main": "sortable-list.html",
+  "dependencies": {
+    "polymer": "Polymer/polymer#^0.5.1",
+    "Sortable": "~1.0.0"
+  },
+  "devDependencies": {
+    "web-component-tester": "Polymer/web-component-tester#^2.0.0"
+  }
+}
