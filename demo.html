@@ -33,9 +33,19 @@
       padding: 6px 12px;
       margin-bottom: 3px;
     }
+
+    #grouped-a div {
+      background: #dfd;
+    }
+
+    #grouped-b div {
+      background: #ddf;
+    }
   </style>
 </head>
 <body unresolved>
+  <h2 align="center"><b>sortable-list</b> <small>(open console to see event logs)</small></h2>
+
   <div id="demos" horizontal layout wrap>
     <div class="demo">
       <h3>Basic Demo</h3>
@@ -44,6 +54,9 @@
         <div>First</div>
         <div>Second</div>
         <div>Third</div>
+        <div>Fourth</div>
+        <div>Fifth</div>
+        <div>Sixth</div>
       </sortable-list>
     </div>
 
@@ -54,6 +67,24 @@
         <div>First</div>
         <div>Second</div>
         <div>Third</div>
+        <div>Fourth</div>
+        <div>Fifth</div>
+        <div>Sixth</div>
+      </sortable-list>
+    </div>
+
+    <div class="demo">
+      <h3>Grouped Lists</h3>
+      <sortable-list id="grouped-a" group="grouped" animation="150">
+        <div>First</div>
+        <div>Second</div>
+        <div>Third</div>
+      </sortable-list>
+
+      <sortable-list id="grouped-b" group="grouped" animation="150">
+        <div>Fourth</div>
+        <div>Fifth</div>
+        <div>Sixth</div>
       </sortable-list>
     </div>
   </div>

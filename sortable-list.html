@@ -107,6 +107,9 @@ Simple, flexible drag-and-drop sortable lists utilizing the excellent
          */
         scrollSpeed: 10
       },
+      observe: {
+        'group sort disabled store animation handle filter sortable ghostClass scroll scrollSensitivity scrollSpeed': 'reactivate'
+      },
       attached: function() {
         this.reactivate();
       },
