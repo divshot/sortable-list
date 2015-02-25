@@ -140,6 +140,7 @@ Simple, flexible drag-and-drop sortable lists utilizing the excellent
            */
           onStart: function(evt) {
             this.fire('sort-start', evt);
+            evt.stopPropagation();
           }.bind(this),
           /**
            * Triggered when a sort ends.
@@ -147,6 +148,7 @@ Simple, flexible drag-and-drop sortable lists utilizing the excellent
            */
           onEnd: function(evt) {
             this.fire('sort-end', evt);
+            evt.stopPropagation();
           }.bind(this),
           /**
            * Triggered when a new element is added to the list via sort drag.
@@ -154,6 +156,7 @@ Simple, flexible drag-and-drop sortable lists utilizing the excellent
            */
           onAdd: function(evt) {
             this.fire('sort-add', evt);
+            evt.stopPropagation();
           }.bind(this),
           /**
            * Triggered when the sort order has been modified.
@@ -161,6 +164,7 @@ Simple, flexible drag-and-drop sortable lists utilizing the excellent
            */
           onUpdate: function(evt) {
             this.fire('sort-update', evt);
+            evt.stopPropagation();
           }.bind(this),
           /**
            * Triggered on add, remove, or update.
@@ -168,6 +172,7 @@ Simple, flexible drag-and-drop sortable lists utilizing the excellent
            */
           onSort: function(evt) {
             this.fire('sort-change', evt);
+            evt.stopPropagation();
           }.bind(this),
           /**
            * Triggered when an element was removed by sort drag.
@@ -175,9 +180,11 @@ Simple, flexible drag-and-drop sortable lists utilizing the excellent
            */
           onRemove: function(evt) {
             this.fire('sort-remove', evt);
+            evt.stopPropagation();
           }.bind(this),
           onFilter: function(evt) {
             this.fire('sort-filter', evt);
+            evt.stopPropagation();
           }.bind(this)
         }
       }
