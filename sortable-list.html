@@ -1,6 +1,5 @@
 <link rel="import" href="../polymer/polymer.html">
-
-<script src="../Sortable/Sortable.js"></script>
+<link rel="import" href="sortable-import.html">
 
 <!--
 Simple, flexible drag-and-drop sortable lists utilizing the excellent
@@ -19,8 +18,7 @@ Simple, flexible drag-and-drop sortable lists utilizing the excellent
 @status alpha
 @homepage http://elements.divshot.io/sortable-list
 -->
-<polymer-element name="sortable-list">
-
+<dom-module id="sortable-list">
   <template>
     <style>
       :host {
@@ -29,95 +27,130 @@ Simple, flexible drag-and-drop sortable lists utilizing the excellent
     </style>
     <content></content>
   </template>
-
   <script>
-
     Polymer({
-      publish: {
+      is: 'sortable-list',
+      properties: {
         /**
          * A named group to allow drag and drop between multiple elements.
          * @attribute group
          * @default null
          * @type String
          */
-        group: null,
-        sort: true,
+        group: {
+          type: String,
+          value: null
+        },
+        sort: {
+          type: Boolean,
+          value: true
+        },
         /**
          * When present, disables sorting.
          * @attribute disabled
          * @default false
          * @type Boolean
          */
-        disabled: false,
-        store: undefined,
+        disabled: {
+          type: Boolean,
+          value: false
+        },
+        store: {
+          type: Object,
+          value: null
+        },
         /**
          * Length of sorting animation (`0` for no animation).
          * @attribute animation
          * @default 0
          * @type Integer
          */
-        animation: 0,
+        animation: {
+          type: Number,
+          value: 0
+        },
         /**
          * CSS selector for a handle inside the sortable item (if any).
          * @attribute handle
          * @default null
          * @type String
          */
-        handle: null,
+        handle: {
+          type: String,
+          value: null
+        },
         /**
          * CSS selector for elements to ignore for sorting purposes.
          * @attribute filter
          * @default null
          * @type String
          */
-        filter: null,
+        filter: {
+          type: String,
+          value: null
+        },
         /**
          * CSS selector for which child elements should be sortable.
          * @attribute sortable
          * @default >*
          * @type String
          */
-        sortable: '>*',
+        sortable: {
+          type: String,
+          value: '>*'
+        },
         /**
          * Name of the class to apply to the ghost during drag.
          * @attribute ghostClass
          * @default sortable-ghost
          * @type String
          */
-        ghostClass: 'sortable-ghost',
+        ghostClass: {
+          type: String,
+          value: 'sortable-ghost'
+        },
         /**
          * Whether or not to scroll when dragging to edges.
          * @attribute scroll
          * @default true
          * @type Boolean
          */
-        scroll: true,
+        scroll: {
+          type: Boolean,
+          value: true
+        },
         /**
          * Sensitivity of scroll boundary detection.
          * @attribute scrollSensitivity
          * @default 30
          * @type Integer
          */
-        scrollSensitivity: 30,
+        scrollSensitivity: {
+          type: Number,
+          value: 30
+        },
         /**
          * Scrolling speed.
          * @attribute scrollSpeed
          * @default 10
          * @type Integer
          */
-        scrollSpeed: 10
+        scrollSpeed: {
+          type: Number,
+          value: 10
+        }
       },
-      observe: {
-        'group sort disabled store animation handle filter sortable ghostClass scroll scrollSensitivity scrollSpeed': 'reactivate'
-      },
+      observers: [
+        '_reactivate(group, sort, disabled, store, animation, handle, filter, sortable, ghostClass, scroll, scrollSensitivity, scrollSpeed)'
+      ],
       attached: function() {
-        this.reactivate();
+        this._reactivate();
       },
       /**
        * Manually destroy and recreate scrollable.
-       * @method reactivate
+       * @method _reactivate
        */
-      reactivate: function() {
+      _reactivate: function() {
         if (this._sortable) { this._sortable.destroy(); }
         this._sortable = Sortable.create(this, this.generateOptions());
       },
@@ -189,7 +222,5 @@ Simple, flexible drag-and-drop sortable lists utilizing the excellent
         }
       }
     });
-
   </script>
-
-</polymer-element>
+</dom-module>

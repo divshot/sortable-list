@@ -9,10 +9,11 @@
   ],
   "main": "sortable-list.html",
   "dependencies": {
-    "polymer": "Polymer/polymer#^0.5.1",
+    "polymer": "Polymer/polymer#~1.0.0",
     "Sortable": "~1.0"
   },
   "devDependencies": {
-    "web-component-tester": "Polymer/web-component-tester#^2.0.0"
+    "iron-component-page": "PolymerElements/iron-component-page#~1.0.0",
+    "web-component-tester": "*"
   }
 }
