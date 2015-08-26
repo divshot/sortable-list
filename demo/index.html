@@ -41,6 +41,35 @@
     #grouped-b div {
       background: #ddf;
     }
+	
+	 #grouped-c div {
+      background: #fdd;
+    }
+
+    #grouped-d div {
+      background: #ddd;
+	  position: relative;
+    }
+    #grouped-c i {
+	  display: none;
+	}
+    #grouped-d div:hover i {
+	  opacity: 1;
+	}
+    #grouped-d i {
+      -webkit-transition: opacity .2s;
+      transition: opacity .2s;
+      opacity: 0;
+      display: block;
+      cursor: pointer;
+      top: 6px;
+      right: 15px;
+      position: absolute;
+      font-style: normal;
+      background-color: #fff;
+      border-radius: 50%;
+      padding: 1px 5px;
+	}
   </style>
 </head>
 <body unresolved>
@@ -87,6 +116,22 @@
         <div>Sixth</div>
       </sortable-list>
     </div>
+	
+	<div class="demo">
+      <h3>Cloning from first to second</h3>
+      <sortable-list id="grouped-c" group="grouped2" clone disable-put disable-sort animation="150">
+        <div>First<i class="js-remove">X</i></div>
+        <div>Second<i class="js-remove">X</i></div>
+        <div>Third<i class="js-remove">X</i></div>
+      </sortable-list>
+
+      <sortable-list id="grouped-d" group="grouped2" disable-pull animation="150" remove-filter=".js-remove">
+        <div>Fourth<i class="js-remove">X</i></div>
+        <div>Fifth<i class="js-remove">X</i></div>
+        <div>Sixth<i class="js-remove">X</i></div>
+      </sortable-list>
+    </div>
+
   </div>
   <script>
     ['sort-start', 'sort-end', 'sort-add', 'sort-update', 'sort-change', 'sort-remove', 'sort-filter'].forEach(function(ev) {
