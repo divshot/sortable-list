@@ -42,7 +42,7 @@ Simple, flexible drag-and-drop sortable lists utilizing the excellent
           value: null
         },
         sort: {
-          type: Boolean,
+          type: Object,
           value: true
         },
         /**
@@ -116,7 +116,7 @@ Simple, flexible drag-and-drop sortable lists utilizing the excellent
          * @type Boolean
          */
         scroll: {
-          type: Boolean,
+          type: Object,
           value: true
         },
         /**
@@ -138,10 +138,18 @@ Simple, flexible drag-and-drop sortable lists utilizing the excellent
         scrollSpeed: {
           type: Number,
           value: 10
+        },
+        push: {
+            type: Object,
+            value: true
+        },
+        pull: {
+            type: Object,
+            value: true
         }
       },
       observers: [
-        '_reactivate(group, sort, disabled, store, animation, handle, filter, sortable, ghostClass, scroll, scrollSensitivity, scrollSpeed)'
+        '_reactivate(group, sort, disabled, store, animation, handle, filter, sortable, ghostClass, scroll, scrollSensitivity, scrollSpeed, push, pull)'
       ],
       attached: function() {
         this._reactivate();
@@ -156,7 +164,12 @@ Simple, flexible drag-and-drop sortable lists utilizing the excellent
       },
       generateOptions: function() {
         return {
-          group: this.group || Math.random(),
+          //group: this.group || Math.random(),
+          group: {
+            name: this.group || Math.random(),
+            push: this.push,
+            pull: this.pull
+          },
           sort: this.sort,
           disabled: this.disabled,
           animation: this.animation,
@@ -172,6 +185,12 @@ Simple, flexible drag-and-drop sortable lists utilizing the excellent
            * @event sort-start
            */
           onStart: function(evt) {
+            // copies polymer properties to cloned element
+            if(evt.clone){
+              for(var i in evt.item.properties) {
+                evt.clone[i] = evt.item[i]
+              }
+            }
             this.fire('sort-start', evt);
             evt.stopPropagation();
           }.bind(this),
