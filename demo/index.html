@@ -41,7 +41,7 @@
     #grouped-b div {
       background: #ddf;
     }
-	
+
 	 #grouped-c div {
       background: #fdd;
     }
@@ -92,7 +92,7 @@
     <div class="demo">
       <h3>Animated Sorting</h3>
 
-      <sortable-list id="animated-demo" animation="150">
+      <sortable-list id="animated-demo" group="exit" pull="true" disable-put animation="150" sort="false">
         <div>First</div>
         <div>Second</div>
         <div>Third</div>
@@ -110,13 +110,13 @@
         <div>Third</div>
       </sortable-list>
 
-      <sortable-list id="grouped-b" group="grouped" animation="150">
+      <sortable-list id="grouped-b" group="grouped"  animation="150">
         <div>Fourth</div>
         <div>Fifth</div>
         <div>Sixth</div>
       </sortable-list>
     </div>
-	
+
 	<div class="demo">
       <h3>Cloning from first to second</h3>
       <sortable-list id="grouped-c" group="grouped2" clone disable-put disable-sort animation="150">
