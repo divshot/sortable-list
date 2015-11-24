@@ -5,7 +5,7 @@
 Simple, flexible drag-and-drop sortable lists utilizing the excellent
 [Sortable.js](http://rubaxa.github.io/Sortable/) library under the covers.
 
-##### Example
+Example:
 
     <sortable-list>
       <div>First Item</div>
@@ -20,254 +20,254 @@ Simple, flexible drag-and-drop sortable lists utilizing the excellent
 -->
 <dom-module id="sortable-list">
   <template>
-    <style>
-      :host {
-        display: block;
-      }
-    </style>
-    <content></content>
-  </template>
-  <script>
-    Polymer({
-      is: 'sortable-list',
-      properties: {
-        /**
-         * A named group to allow drag and drop between multiple elements.
-         * @attribute group
-         * @default null
-         * @type String
-         */
-        group: {
-          type: String,
-          value: null
-        },
-		 /**
-         * Ability to move from the list.
-         * @attribute disablePull
-         * @default false
-         * @type Boolean
-         */
-        disablePull: Boolean,
-		 /**
-         * If pull is enabled, copy the item, rather than move.
-         * @attribute clone
-         * @default false
-         * @type Boolean
-         */
-        clone: Boolean,
-		 /**
-         * whether elements can be added from other lists
-         * @attribute disablePut
-         * @default false
-         * @type Boolean
-         */
-        disablePut: Boolean,
-		 /**
-         * If pull is enabled, set a comma-separated list of group names from which elements can be taken.
-		 * es. ("group1, group2")
-         * @attribute putAllowedFor
-         * @default null
-         * @type String
-         */
-        putAllowedFor: {
-          type: String,
-          value: null
-        },
-        disableSort: Boolean,
-        /**
-         * When present, disables sorting.
-         * @attribute disabled
-         * @default false
-         * @type Boolean
-         */
-        disabled: {
-          type: Boolean,
-          value: false
-        },
-        store: {
-          type: Object,
-          value: null
-        },
-        /**
-         * Length of sorting animation (`0` for no animation).
-         * @attribute animation
-         * @default 0
-         * @type Integer
-         */
-        animation: {
-          type: Number,
-          value: 0
-        },
-        /**
-         * CSS selector for a handle inside the sortable item (if any).
-         * @attribute handle
-         * @default null
-         * @type String
-         */
-        handle: {
-          type: String,
-          value: null
-        },
-        /**
-         * CSS selector for elements to ignore for sorting purposes.
-         * @attribute filter
-         * @default null
-         * @type String
-         */
-        filter: {
-          type: String,
-          value: null
-        },
-		/**
-         * CSS selector for elements to remove their own sortable parent element.
-         * @attribute filter
-         * @default null
-         * @type String
-         */
-		removeFilter : {
-		  type: String,
-          value: null
-		},
-        /**
-         * CSS selector for which child elements should be sortable.
-         * @attribute sortable
-         * @default >*
-         * @type String
-         */
-        sortable: {
-          type: String,
-          value: '>*'
-        },
-        /**
-         * Name of the class to apply to the ghost during drag.
-         * @attribute ghostClass
-         * @default sortable-ghost
-         * @type String
-         */
-        ghostClass: {
-          type: String,
-          value: 'sortable-ghost'
-        },
-        /**
-         * Whether or not to scroll when dragging to edges.
-         * @attribute scroll
-         * @default true
-         * @type Boolean
-         */
-        scroll: {
-          type: Boolean,
-          value: true
-        },
-        /**
-         * Sensitivity of scroll boundary detection.
-         * @attribute scrollSensitivity
-         * @default 30
-         * @type Integer
-         */
-        scrollSensitivity: {
-          type: Number,
-          value: 30
-        },
-        /**
-         * Scrolling speed.
-         * @attribute scrollSpeed
-         * @default 10
-         * @type Integer
-         */
-        scrollSpeed: {
-          type: Number,
-          value: 10
-        }
+  <style>
+  :host {
+    display: block;
+  }
+  </style>
+  <content></content>
+</template>
+<script>
+Polymer({
+  is: 'sortable-list',
+  properties: {
+    /**
+    * A named group to allow drag and drop between multiple elements.
+    * @attribute group
+    * @default null
+    * @type String
+    */
+    group: {
+      type: String,
+      value: null
+    },
+    /**
+    * Ability to move from the list.
+    * @attribute disablePull
+    * @default false
+    * @type Boolean
+    */
+    disablePull: Boolean,
+    /**
+    * If pull is enabled, copy the item, rather than move.
+    * @attribute clone
+    * @default false
+    * @type Boolean
+    */
+    clone: Boolean,
+    /**
+    * whether elements can be added from other lists
+    * @attribute disablePut
+    * @default false
+    * @type Boolean
+    */
+    disablePut: Boolean,
+    /**
+    * If pull is enabled, set a comma-separated list of group names from which elements can be taken.
+    * es. ("group1, group2")
+    * @attribute putAllowedFor
+    * @default null
+    * @type String
+    */
+    putAllowedFor: {
+      type: String,
+      value: null
+    },
+    disableSort: Boolean,
+    /**
+    * When present, disables sorting.
+    * @attribute disabled
+    * @default false
+    * @type Boolean
+    */
+    disabled: {
+      type: Boolean,
+      value: false
+    },
+    store: {
+      type: Object,
+      value: null
+    },
+    /**
+    * Length of sorting animation (`0` for no animation).
+    * @attribute animation
+    * @default 0
+    * @type Integer
+    */
+    animation: {
+      type: Number,
+      value: 0
+    },
+    /**
+    * CSS selector for a handle inside the sortable item (if any).
+    * @attribute handle
+    * @default null
+    * @type String
+    */
+    handle: {
+      type: String,
+      value: null
+    },
+    /**
+    * CSS selector for elements to ignore for sorting purposes.
+    * @attribute filter
+    * @default null
+    * @type String
+    */
+    filter: {
+      type: String,
+      value: null
+    },
+    /**
+    * CSS selector for elements to remove their own sortable parent element.
+    * @attribute filter
+    * @default null
+    * @type String
+    */
+    removeFilter : {
+      type: String,
+      value: null
+    },
+    /**
+    * CSS selector for which child elements should be sortable.
+    * @attribute sortable
+    * @default >*
+    * @type String
+    */
+    sortable: {
+      type: String,
+      value: '>*'
+    },
+    /**
+    * Name of the class to apply to the ghost during drag.
+    * @attribute ghostClass
+    * @default sortable-ghost
+    * @type String
+    */
+    ghostClass: {
+      type: String,
+      value: 'sortable-ghost'
+    },
+    /**
+    * Whether or not to scroll when dragging to edges.
+    * @attribute scroll
+    * @default true
+    * @type Boolean
+    */
+    scroll: {
+      type: Boolean,
+      value: true
+    },
+    /**
+    * Sensitivity of scroll boundary detection.
+    * @attribute scrollSensitivity
+    * @default 30
+    * @type Integer
+    */
+    scrollSensitivity: {
+      type: Number,
+      value: 30
+    },
+    /**
+    * Scrolling speed.
+    * @attribute scrollSpeed
+    * @default 10
+    * @type Integer
+    */
+    scrollSpeed: {
+      type: Number,
+      value: 10
+    }
+  },
+  observers: [
+    '_reactivate(group, disablePull, clone, disablePut, putAllowedFor, disableSort, disabled, store, animation, handle, filter, sortable, ghostClass, scroll, scrollSensitivity, scrollSpeed)'
+  ],
+  attached: function() {
+    this._reactivate();
+  },
+  /**
+  * Manually destroy and recreate scrollable.
+  * @method _reactivate
+  */
+  _reactivate: function() {
+    if (this._sortable) { this._sortable.destroy(); }
+    this._sortable = Sortable.create(this, this.generateOptions());
+  },
+  generateOptions: function() {
+    return {
+      group: {
+        name: this.group || Math.random(),
+        pull: (!this.disablePull && this.clone) ? 'clone' : !this.disablePull,
+        put: (!this.disablePut && this.putAllowedFor && this.putAllowedFor.split(',')) || !this.disablePut
       },
-      observers: [
-        '_reactivate(group, disablePull, clone, disablePut, putAllowedFor, disableSort, disabled, store, animation, handle, filter, sortable, ghostClass, scroll, scrollSensitivity, scrollSpeed)'
-      ],
-      attached: function() {
-        this._reactivate();
-      },
+      sort: !this.disableSort,
+      disabled: this.disabled,
+      animation: this.animation,
+      handle: this.handle,
+      filter: (this.filter + ',' + this.removeFilter).replace(/^,/,"").replace(/,\s*$/, ""),
+      draggable: this.sortable,
+      ghostClass: this.ghostClass,
+      scroll: this.scroll,
+      scrollSensitivity: this.scrollSensitivity,
+      scrollSpeed: this.scrollSpeed,
       /**
-       * Manually destroy and recreate scrollable.
-       * @method _reactivate
-       */
-      _reactivate: function() {
-        if (this._sortable) { this._sortable.destroy(); }
-        this._sortable = Sortable.create(this, this.generateOptions());
-      },
-      generateOptions: function() {
-        return {
-          group: {
-			name: this.group || Math.random(),
-			pull: (!this.disablePull && this.clone) ? 'clone' : !this.disablePull,
-			put: (!this.disablePut && this.putAllowedFor && this.putAllowedFor.split(',')) || !this.disablePut
-		  },
-          sort: !this.disableSort,
-          disabled: this.disabled,
-          animation: this.animation,
-          handle: this.handle,
-          filter: (this.filter + ',' + this.removeFilter).replace(/^,/,"").replace(/,\s*$/, ""),
-          draggable: this.sortable,
-          ghostClass: this.ghostClass,
-          scroll: this.scroll,
-          scrollSensitivity: this.scrollSensitivity,
-          scrollSpeed: this.scrollSpeed,
-          /**
-           * Triggered when a sort begins.
-           * @event sort-start
-           */
-          onStart: function(evt) {
-            this.fire('sort-start', evt);
-            evt.stopPropagation();
-          }.bind(this),
-          /**
-           * Triggered when a sort ends.
-           * @event sort-end
-           */
-          onEnd: function(evt) {
-            this.fire('sort-end', evt);
-            evt.stopPropagation();
-          }.bind(this),
-          /**
-           * Triggered when a new element is added to the list via sort drag.
-           * @event sort-add
-           */
-          onAdd: function(evt) {
-            this.fire('sort-add', evt);
-            evt.stopPropagation();
-          }.bind(this),
-          /**
-           * Triggered when the sort order has been modified.
-           * @event sort-update
-           */
-          onUpdate: function(evt) {
-            this.fire('sort-update', evt);
-            evt.stopPropagation();
-          }.bind(this),
-          /**
-           * Triggered on add, remove, or update.
-           * @event sort-change
-           */
-          onSort: function(evt) {
-            this.fire('sort-change', evt);
-            evt.stopPropagation();
-          }.bind(this),
-          /**
-           * Triggered when an element was removed by sort drag.
-           * @event sort-remove
-           */
-          onRemove: function(evt) {
-            this.fire('sort-remove', evt);
-            evt.stopPropagation();
-          }.bind(this),
-          onFilter: function(evt) {
-            this.fire('sort-filter', evt);
-			if (this.removeFilter && Sortable.utils.is(evt.target, this.removeFilter)) {  
-				evt.item.parentNode.removeChild(evt.item);
-				this.fire('sort-remove', evt);
-			}
-            evt.stopPropagation();
-          }.bind(this)
+      * Triggered when a sort begins.
+      * @event sort-start
+      */
+      onStart: function(evt) {
+        this.fire('sort-start', evt);
+        evt.stopPropagation();
+      }.bind(this),
+      /**
+      * Triggered when a sort ends.
+      * @event sort-end
+      */
+      onEnd: function(evt) {
+        this.fire('sort-end', evt);
+        evt.stopPropagation();
+      }.bind(this),
+      /**
+      * Triggered when a new element is added to the list via sort drag.
+      * @event sort-add
+      */
+      onAdd: function(evt) {
+        this.fire('sort-add', evt);
+        evt.stopPropagation();
+      }.bind(this),
+      /**
+      * Triggered when the sort order has been modified.
+      * @event sort-update
+      */
+      onUpdate: function(evt) {
+        this.fire('sort-update', evt);
+        evt.stopPropagation();
+      }.bind(this),
+      /**
+      * Triggered on add, remove, or update.
+      * @event sort-change
+      */
+      onSort: function(evt) {
+        this.fire('sort-change', evt);
+        evt.stopPropagation();
+      }.bind(this),
+      /**
+      * Triggered when an element was removed by sort drag.
+      * @event sort-remove
+      */
+      onRemove: function(evt) {
+        this.fire('sort-remove', evt);
+        evt.stopPropagation();
+      }.bind(this),
+      onFilter: function(evt) {
+        this.fire('sort-filter', evt);
+        if (this.removeFilter && Sortable.utils.is(evt.target, this.removeFilter)) {
+          evt.item.parentNode.removeChild(evt.item);
+          this.fire('sort-remove', evt);
         }
-      }
-    });
-  </script>
+        evt.stopPropagation();
+      }.bind(this)
+    }
+  }
+});
+</script>
 </dom-module>
