@@ -8,39 +8,68 @@
   <link rel="import" href="../sortable-list.html">
 
   <style>
-    body {
-      font-family: sans-serif;
-      font-size: 14px;
-    }
+  body {
+    font-family: sans-serif;
+    font-size: 14px;
+  }
 
-    h3 {
-      margin: 0 0 10px;
-      text-align: center;
-    }
+  h3 {
+    margin: 0 0 10px;
+    text-align: center;
+  }
 
-    .demo {
-      min-width: 250px;
-    }
+  .demo {
+    min-width: 250px;
+  }
 
-    sortable-list {
-      margin: 15px;
-    }
+  sortable-list {
+    margin: 15px;
+  }
 
-    sortable-list > div {
-      background: white;
-      border: 1px solid #ddd;
-      border-radius: 3px;
-      padding: 6px 12px;
-      margin-bottom: 3px;
-    }
+  sortable-list > div {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    padding: 6px 12px;
+    margin-bottom: 3px;
+  }
 
-    #grouped-a div {
-      background: #dfd;
-    }
+  #grouped-a div {
+    background: #dfd;
+  }
 
-    #grouped-b div {
-      background: #ddf;
-    }
+  #grouped-b div {
+    background: #ddf;
+  }
+
+  #grouped-c div {
+    background: #fdd;
+  }
+
+  #grouped-d div {
+    background: #ddd;
+    position: relative;
+  }
+  #grouped-c i {
+    display: none;
+  }
+  #grouped-d div:hover i {
+    opacity: 1;
+  }
+  #grouped-d i {
+    -webkit-transition: opacity .2s;
+    transition: opacity .2s;
+    opacity: 0;
+    display: block;
+    cursor: pointer;
+    top: 6px;
+    right: 15px;
+    position: absolute;
+    font-style: normal;
+    background-color: #fff;
+    border-radius: 50%;
+    padding: 1px 5px;
+  }
   </style>
 </head>
 <body unresolved>
@@ -63,7 +92,7 @@
     <div class="demo">
       <h3>Animated Sorting</h3>
 
-      <sortable-list id="animated-demo" animation="150">
+      <sortable-list id="animated-demo" group="exit" pull="true" disable-put animation="150" sort="false">
         <div>First</div>
         <div>Second</div>
         <div>Third</div>
@@ -81,19 +110,35 @@
         <div>Third</div>
       </sortable-list>
 
-      <sortable-list id="grouped-b" group="grouped" animation="150">
+      <sortable-list id="grouped-b" group="grouped"  animation="150">
         <div>Fourth</div>
         <div>Fifth</div>
         <div>Sixth</div>
       </sortable-list>
     </div>
+
+    <div class="demo">
+      <h3>Cloning from first to second</h3>
+      <sortable-list id="grouped-c" group="grouped2" clone disable-put disable-sort animation="150">
+        <div>First<i class="js-remove">X</i></div>
+        <div>Second<i class="js-remove">X</i></div>
+        <div>Third<i class="js-remove">X</i></div>
+      </sortable-list>
+
+      <sortable-list id="grouped-d" group="grouped2" disable-pull animation="150" remove-filter=".js-remove">
+        <div>Fourth<i class="js-remove">X</i></div>
+        <div>Fifth<i class="js-remove">X</i></div>
+        <div>Sixth<i class="js-remove">X</i></div>
+      </sortable-list>
+    </div>
+
   </div>
   <script>
-    ['sort-start', 'sort-end', 'sort-add', 'sort-update', 'sort-change', 'sort-remove', 'sort-filter'].forEach(function(ev) {
-      document.addEventListener(ev, function(e) {
-        console.log(ev, e.target.id, e.detail);
-      });
+  ['sort-start', 'sort-end', 'sort-add', 'sort-update', 'sort-change', 'sort-remove', 'sort-filter'].forEach(function(ev) {
+    document.addEventListener(ev, function(e) {
+      console.log(ev, e.target.id, e.detail);
     });
+  });
   </script>
 </body>
 </html>
